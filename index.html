@@ -5,22 +5,104 @@
   <meta charset="UTF-8">
   <title>JP1入門：第2章</title>
   <style>
-    body { font-family: sans-serif; padding: 2em; max-width: 800px; margin: auto; line-height: 1.8; }
-    h1 { color: #2c3e50; }
-    p { font-size: 1.1em; }
+    body { font-family: sans-serif; line-height: 1.8; padding: 2em; max-width: 800px; margin: auto; }
+    h1, h2, h3 { color: #2c3e50; }
+    nav ul { list-style: none; padding-left: 1em; }
+    nav li { margin: 0.4em 0; }
+    nav a { text-decoration: none; color: #2980b9; }
+    section { margin-top: 3em; display: none; }
+    section.active { display: block; }
+    .nav-buttons { margin-top: 2em; }
+    .nav-buttons button { margin-right: 1em; }
   </style>
 </head>
 <body>
-  <h1>JP1入門：第2章</h1>
-  <p>このページは、GitHub Pages を使って公開された JP1 の入門ガイドです。</p>
-  <p>以下のトピックについて説明します：</p>
-  <ul>
-    <li>JP1/Base</li>
-    <li>JP1/AJS</li>
-    <li>JP1/IM</li>
-    <li>JP1/CM</li>
-    <li>各モジュールの連携</li>
-  </ul>
-  <p>今後、図解や設定例なども追加予定です。</p>
+  <h1>JP1入門：第2章 JP1の主要コンポーネント</h1>
+
+  <nav>
+    <h2>目次</h2>
+    <ul>
+      <li><a href="#" onclick="showPage(0)">1. JP1/Baseってなに？</a></li>
+      <li><a href="#" onclick="showPage(1)">2. JP1/AJSってなに？</a></li>
+      <li><a href="#" onclick="showPage(2)">3. JP1/IMってなに？</a></li>
+      <li><a href="#" onclick="showPage(3)">4. JP1/CMってなに？</a></li>
+      <li><a href="#" onclick="showPage(4)">5. モジュールとの連携</a></li>
+      <li><a href="#" onclick="showPage(5)">6. 通信の仕組み</a></li>
+      <li><a href="#" onclick="showPage(6)">7. モジュールのインストール</a></li>
+      <li><a href="#" onclick="showPage(7)">8. 管理サーバとエージェント</a></li>
+      <li><a href="#" onclick="showPage(8)">9. GUIとCLI</a></li>
+      <li><a href="#" onclick="showPage(9)">10. モジュール選びのコツ</a></li>
+
+    </ul>
+  </nav>
+
+  <div id="pages">
+<section class="page active">
+  <h2>1. JP1/Baseってなに？</h2>
+  <p>JP1/BaseはJP1の共通の土台です。これがないと他の機能は動きません。ログ転送や通信、ユーザー管理などの基本機能を担います。</p>
+</section>
+<section class="page ">
+  <h2>2. JP1/AJSってなに？</h2>
+  <p>JP1/AJSは決まった作業（ジョブ）を自動で実行してくれる機能です。定期的な処理などを設定して、毎日決まった時間に実行できます。</p>
+</section>
+<section class="page ">
+  <h2>3. JP1/IMってなに？</h2>
+  <p>JP1/IMは、異常を検知して通知する監視ツールです。ジョブの失敗やエラーをまとめて見える化してくれます。</p>
+</section>
+<section class="page ">
+  <h2>4. JP1/CMってなに？</h2>
+  <p>JP1/CMは、サーバーやパソコンの設定情報を管理して、変化を記録してくれる機能です。</p>
+</section>
+<section class="page ">
+  <h2>5. モジュールとの連携</h2>
+  <p>JP1には他にも性能監視（PFM）やソフト配布（SD）などがあり、組み合わせて使うことで強力な運用ができます。</p>
+</section>
+<section class="page ">
+  <h2>6. 通信の仕組み</h2>
+  <p>JP1では管理サーバとエージェント間で通信を行い、ジョブの実行や状態の確認を行います。通信ポートに注意が必要です。</p>
+</section>
+<section class="page ">
+  <h2>7. モジュールのインストール</h2>
+  <p>必要な機能だけを選んでインストールできます。小さく始めて徐々に拡張するのがポイントです。</p>
+</section>
+<section class="page ">
+  <h2>8. 管理サーバとエージェント</h2>
+  <p>管理サーバは命令を出す側、エージェントは実行する側。役割を分けてスケーラブルに動きます。</p>
+</section>
+<section class="page ">
+  <h2>9. GUIとCLI</h2>
+  <p>画面から操作するGUIと、コマンドで操作するCLIの両方が使えます。状況に応じて使い分けが可能です。</p>
+</section>
+<section class="page ">
+  <h2>10. モジュール選びのコツ</h2>
+  <p>目的に応じて必要なモジュールを選ぶのが大切。最初から全部入れず、段階的に増やすのがベストです。</p>
+</section>
+
+  </div>
+
+  <div class="nav-buttons">
+    <button onclick="prevPage()">前へ</button>
+    <button onclick="nextPage()">次へ</button>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0;
+
+    function showPage(index) {
+      pages[currentPage].classList.remove('active');
+      currentPage = index;
+      pages[currentPage].classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function prevPage() {
+      if (currentPage > 0) showPage(currentPage - 1);
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) showPage(currentPage + 1);
+    }
+  </script>
 </body>
 </html>
